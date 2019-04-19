@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AccountlistComponent } from './components/accountlist/accountlist.component';
 import { TransactionsreportComponent } from './components/transactionsreport/transactionsreport.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { WalletaccountComponent } from './components/walletaccount/walletaccount.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path:'profile', component: ProfileComponent},
   {path:'account-list', component: AccountlistComponent},
   {path:'transactions-report', component: TransactionsreportComponent},
+  {path:'e-wallets', component: WalletaccountComponent},
   {path:'**', component: PagenotfoundComponent}
 ];
 

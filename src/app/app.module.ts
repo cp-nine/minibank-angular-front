@@ -14,6 +14,9 @@ import { AccountlistComponent } from './components/accountlist/accountlist.compo
 import { TransactionsreportComponent } from './components/transactionsreport/transactionsreport.component';
 import { EditcustprofileComponent } from './components/forms/editcustprofile/editcustprofile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { WalletaccountComponent } from './components/walletaccount/walletaccount.component';
+import { ModalcreateaccountComponent } from './components/forms/modalcreateaccount/modalcreateaccount.component';
+import { ModalcreatewalletComponent } from './components/forms/modalcreatewallet/modalcreatewallet.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AccountlistComponent,
     TransactionsreportComponent,
     EditcustprofileComponent,
-    DashboardComponent
+    DashboardComponent,
+    WalletaccountComponent,
+    ModalcreateaccountComponent,
+    ModalcreatewalletComponent
   ],
   imports: [
     BrowserModule,
