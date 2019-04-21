@@ -3,20 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { AccountlistComponent } from './components/accountlist/accountlist.component';
-import { TransactionsreportComponent } from './components/transactionsreport/transactionsreport.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { WalletaccountComponent } from './components/walletaccount/walletaccount.component';
+import { AuthGuard } from './guard/auth.guard';
+import { CustomerGuard } from './guard/customer.guard';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  {path:'dashboard', component: DashboardComponent},
-  {path:'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent},
-  {path:'account-list', component: AccountlistComponent},
-  {path:'transactions-report', component: TransactionsreportComponent},
-  {path:'e-wallets', component: WalletaccountComponent},
+  {path:'login', component: LoginComponent, canActivate:[AuthGuard] },
+  {path:'customer', loadChildren:'./customer/customer.module#CustomerModule', canActivate: [CustomerGuard]},
   {path:'**', component: PagenotfoundComponent}
 ];
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthserviceService } from 'src/app/services/auth/authservice.service';
+import { LoginModel } from 'src/app/model/login-model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup;
+  submitted: boolean = false;
+  loginFailed: boolean = false;
 
-  ngOnInit() {
+  auth: LoginModel;
+
+  constructor(
+    private service: AuthserviceService,
+    private fb: FormBuilder
+  ) 
+  { 
+    
+  }
+
+  ngOnInit() {   
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  public get f() {
+    return this.loginForm.controls;
+  }
+
+  // login process
+  loginProcess(){
+    this.submitted = true;
+    this.auth = this.loginForm.value;
+
+    // check validation form
+    if (this.loginForm.invalid) {
+
+      return;
+
+    }
+
+    // call login auth service to hit api login
+    this.service.login(this.auth).subscribe(
+      response => {
+        if(response.status !== "20"){
+          this.loginFailed = true;
+        } else {
+          localStorage.setItem("user", `${response.data.customerNumber}`);
+          window.location.href = "/customer/dashboard";
+        }
+      }
+    );
+
+    
   }
 
 }

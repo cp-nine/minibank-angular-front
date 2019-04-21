@@ -11,22 +11,22 @@ export class SidebarComponent implements OnInit {
   mainMenu = [
     {
       name: "Profile",
-      link: "/profile",
+      link: "/customer/profile",
       icon: "fa-user"
     },
     {
       name: "Account List",
-      link: "/account-list",
+      link: "/customer/account-list",
       icon: "fa-list"
     },
     {
       name: "Transaction Report",
-      link: "/transactions-report",
+      link: "/customer/transaction-report",
       icon: "fa-money-check-alt"
     },
     {
       name: "E-Wallets",
-      link: "/e-wallets",
+      link: "/customer/e-wallets",
       icon: "fa-wallet"
     }
   ];

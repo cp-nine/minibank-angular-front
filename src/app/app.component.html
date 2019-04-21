@@ -1,20 +1,30 @@
-<app-navbar *ngIf="currentUrl !== 'login'"></app-navbar>
+<!-- if user access home page -->
+<div *ngIf="currentUrl === ''">
+  <app-publicnavbar></app-publicnavbar>
 
-<section class="body" *ngIf="currentUrl !== 'login'">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- if customer is login -->
+<div *ngIf="currentUrl === 'customer' && isLogin">
+  <app-navbar></app-navbar>
+  <section class="body">
     <app-sidebar></app-sidebar>
 
-  <!-- content -->
-  <div class="content">
+    <!-- content -->
+    <div class="content">
       <app-breadcrumb></app-breadcrumb>
 
       <!-- main -->
       <div class="container-fluid">
         <router-outlet></router-outlet>
       </div>
-  </div>
+    </div>
 
-</section>
+  </section>
+</div>
 
+<!-- if user acces login -->
 <div *ngIf="currentUrl === 'login'">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

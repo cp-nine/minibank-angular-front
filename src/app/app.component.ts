@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,21 @@ export class AppComponent {
   title = 'Mini Bank';
 
   arrUrl = []; 
+  @Input()
   currentUrl: string; 
 
-  constructor(){
+  @Output()
+  getUrl = new EventEmitter();
+
+  isLogin: boolean = false;
+
+  constructor(){}
+
+  ngOnInit(){
+    if(localStorage.getItem("user") !== null){
+      this.isLogin = true;
+    }
+
     this.arrUrl = location.href.split('/');
     this.currentUrl = this.arrUrl[3];
   }

@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,14 +11,7 @@ import { BreadcrumbComponent } from './nav/breadcrumb/breadcrumb.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { AccountlistComponent } from './components/accountlist/accountlist.component';
-import { TransactionsreportComponent } from './components/transactionsreport/transactionsreport.component';
-import { EditcustprofileComponent } from './components/forms/editcustprofile/editcustprofile.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { WalletaccountComponent } from './components/walletaccount/walletaccount.component';
-import { ModalcreateaccountComponent } from './components/forms/modalcreateaccount/modalcreateaccount.component';
-import { ModalcreatewalletComponent } from './components/forms/modalcreatewallet/modalcreatewallet.component';
+import { PublicnavbarComponent } from './nav/publicnavbar/publicnavbar.component';
 
 @NgModule({
   declarations: [
@@ -27,18 +22,14 @@ import { ModalcreatewalletComponent } from './components/forms/modalcreatewallet
     HomeComponent,
     LoginComponent,
     PagenotfoundComponent,
-    ProfileComponent,
-    AccountlistComponent,
-    TransactionsreportComponent,
-    EditcustprofileComponent,
-    DashboardComponent,
-    WalletaccountComponent,
-    ModalcreateaccountComponent,
-    ModalcreatewalletComponent
+    PublicnavbarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
