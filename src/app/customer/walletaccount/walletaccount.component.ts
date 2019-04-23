@@ -74,4 +74,8 @@ export class WalletaccountComponent implements OnInit {
     this.profileWallet = true;
   }
 
+  updateData(){
+    this.getWallets();
+  }
+
 }

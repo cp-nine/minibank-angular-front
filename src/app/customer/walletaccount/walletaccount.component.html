@@ -42,6 +42,6 @@
     </div>
   </div>
   
-  <app-modalcreatewallet *ngIf="!profileWallet"></app-modalcreatewallet>
+  <app-modalcreatewallet (modalEmitter)="updateData($event)" *ngIf="!profileWallet"></app-modalcreatewallet>
 
   <app-wallet-profile *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>

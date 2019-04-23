@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Account } from 'src/app/model/account-model';
 
@@ -15,13 +15,15 @@ export class AccountlistComponent implements OnInit {
   accounts: Account[];
   totalBallance: number = 0;
 
-  successCreated: boolean;
+  successCreated: boolean = false;
 
   constructor(private service: CustomerService) { }
 
   ngOnInit() {
 
     this.getAccounts();
+    
+    console.log(this.successCreated);
 
   }
 
@@ -40,6 +42,11 @@ export class AccountlistComponent implements OnInit {
 
       }
     );
+  }
+
+  isCreated(){
+    this.successCreated = !this.successCreated;
+    this.getAccounts();
   }
 
 }

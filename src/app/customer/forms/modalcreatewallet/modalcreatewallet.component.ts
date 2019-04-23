@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Wallet } from 'src/app/model/wallet';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from 'src/app/model/customer-model';
@@ -20,6 +20,9 @@ export class ModalcreatewalletComponent implements OnInit {
 
   message: string = '';
   isSuccess: boolean = false;
+
+  @Output()
+  modalEmitter = new EventEmitter();
 
   acn: number;
 
@@ -75,6 +78,9 @@ export class ModalcreatewalletComponent implements OnInit {
         } else {
           this.message = resp.message;
           this.isSuccess = true;
+
+          this.isSuccess = !this.isSuccess;
+          this.modalEmitter.emit(this.isSuccess);
         }
       }
     );

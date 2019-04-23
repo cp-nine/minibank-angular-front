@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Account } from 'src/app/model/account-model';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from 'src/app/model/customer-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modalcreateaccount',
@@ -28,7 +29,8 @@ export class ModalcreateaccountComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private servisce1: CustomerService
+    private servisce1: CustomerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -57,7 +59,10 @@ export class ModalcreateaccountComponent implements OnInit {
 
     }
 
-    this.createAccount(this.account);
+    // setTimeout(()=>{
+      this.createAccount(this.account);
+    // }, 3000);
+    
     
   }
 
@@ -79,10 +84,13 @@ export class ModalcreateaccountComponent implements OnInit {
         if (resp.status !== "20") {
           this.message = resp.message;
         } else {
-          this.message = resp.message;
+            this.message = resp.message;
 
-          this.isCreated = !this.isCreated;
-          this.emmiterModal.emit(this.isCreated);
+            this.isCreated = !this.isCreated;
+            this.emmiterModal.emit(this.isCreated);
+
+            this.router.navigate(['/customer/account-list']);
+
         }
       }
     );
