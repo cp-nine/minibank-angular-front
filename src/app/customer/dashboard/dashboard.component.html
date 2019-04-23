@@ -13,7 +13,7 @@
                 <h5>Transactions</h5>
               </div>
               <div class="card-right">
-                <h1>11</h1>
+                <h1>{{totalTrxCust===null? 0 : totalTrxCust}}</h1>
               </div>
             </div>
           </div>
@@ -28,7 +28,7 @@
                 <h5>Accounts</h5>
               </div>
               <div class="card-right">
-                <h1>{{totalAccount}}</h1>
+                <h1>{{totalAccount ===null? 0 : totalAccount}}</h1>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
                 <h5>Wallets</h5>
               </div>
               <div class="card-right">
-                <h1>4</h1>
+                <h1>{{totalWallet===null? 0 : totalWallet}}</h1>
               </div>
             </div>
           </div>
@@ -74,6 +74,12 @@
                         <td>{{ac.ballance | currency:'Rp.'}}</td>
                       </tr>
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <th colspan="2">Tottall Ballance</th>
+                        <th>{{totalBallance | currency: 'Rp. '}}</th>
+                      </tr>
+                    </tfoot>
                   </table>
                 </div>
                 <div class="col-sm-4">

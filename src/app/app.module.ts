@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { PublicnavbarComponent } from './nav/publicnavbar/publicnavbar.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PublicnavbarComponent } from './nav/publicnavbar/publicnavbar.component
     HomeComponent,
     LoginComponent,
     PagenotfoundComponent,
-    PublicnavbarComponent
+    PublicnavbarComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

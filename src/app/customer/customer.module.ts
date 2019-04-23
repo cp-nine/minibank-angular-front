@@ -10,12 +10,16 @@ import { TransactionreportComponent } from './transactionreport/transactionrepor
 import { WalletaccountComponent } from './walletaccount/walletaccount.component';
 import { ModalcreateaccountComponent } from './forms/modalcreateaccount/modalcreateaccount.component';
 import { ModalcreatewalletComponent } from './forms/modalcreatewallet/modalcreatewallet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { WalletProfileComponent } from './wallet-profile/wallet-profile.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ProfileComponent, EditcustprofileComponent, AccountlistComponent, TransactionreportComponent, WalletaccountComponent, ModalcreateaccountComponent, ModalcreatewalletComponent],
+  declarations: [DashboardComponent, ProfileComponent, EditcustprofileComponent, AccountlistComponent, TransactionreportComponent, WalletaccountComponent, ModalcreateaccountComponent, ModalcreatewalletComponent, WalletProfileComponent],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomerModule { }

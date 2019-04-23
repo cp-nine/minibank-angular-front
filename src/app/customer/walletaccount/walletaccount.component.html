@@ -1,4 +1,4 @@
-<div class="row account-list">
+<div class="row account-list" *ngIf="!profileWallet">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
@@ -22,23 +22,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><a href="">E - Banking</a></td>
-                                    <td>86822096201</td>
-                                    <td>11 Aril 2019</td>
-                                    <td>Rp.10.000.000,00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">E - Payment</a></td>
-                                    <td>86822096202</td>
-                                    <td>11 Aril 2019</td>
-                                    <td>Rp.20.000.000,00</td>
-                                </tr>
-                                <tr>
-                                    <td><a href="">E - Merchant</a></td>
-                                    <td>86822096203</td>
-                                    <td>11 Aril 2019</td>
-                                    <td>Rp.30.000.000,00</td>
+                                <tr *ngFor="let w of wallets">
+                                    <td><a href="javascript:void(0)" (click)="profile(w)">{{w.walletName}}</a></td>
+                                    <td>{{w.accountNumber}}</td>
+                                    <td>{{w.createAt}}</td>
+                                    <td>{{w.ballance | currency: 'Rp. '}}</td>
+                                    <td>
+                                        <a href="#" (click)="unreg(w)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#unreg-modal">
+                                            <i class="fas fa-unlink"></i> Unreg
+                                        </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -49,4 +42,6 @@
     </div>
   </div>
   
-  <app-modalcreatewallet></app-modalcreatewallet>
+  <app-modalcreatewallet *ngIf="!profileWallet"></app-modalcreatewallet>
+
+  <app-wallet-profile *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>

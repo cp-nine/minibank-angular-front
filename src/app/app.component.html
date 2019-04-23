@@ -1,5 +1,5 @@
 <!-- if user access home page -->
-<div *ngIf="currentUrl === ''">
+<div *ngIf="currentUrl === '' || currentUrl === 'register'">
   <app-publicnavbar></app-publicnavbar>
 
   <router-outlet></router-outlet>

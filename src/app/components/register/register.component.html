@@ -1,0 +1,97 @@
+<div class="registerForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="text-center">Register Customer</h4>
+            <hr>
+
+            <div class="alert text-center" *ngIf="message !== ''" [ngClass]="isSuccess ? 'alert-success': 'alert-danger '">
+                <p style="margin-bottom:0;">{{message}}</p>
+              </div>
+
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+              <div class="row" style="padding: 20px;">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">First Name</label>
+                    <input formControlName="fname" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.fname.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input formControlName="lname" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lname.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Gender</label>
+                    <select formControlName="gender" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                      <option value="">Select One</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Place Of Birth</label>
+                    <input formControlName="placeOb" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.placeOb.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Birth Date</label>
+                    <input formControlName="brithDate" type="date" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.brithDate.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Phone Number</label>
+                    <input formControlName="phoneNumber" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Email</label>
+                    <input formControlName="email" type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Address</label>
+                    <textarea formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Job</label>
+                    <input formControlName="job" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.job.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Range Salary</label>
+                    <select formControlName="rangeSalary" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.rangeSalary.errors }">
+                      <option value="">Select One</option>
+                      <option value="1Jt - 5 Jt">1Jt - 5 Jt</option>
+                      <option value="5Jt - 10 Jt">5Jt - 10 Jt</option>
+                      <option value="10Jt - 20 Jt">10Jt - 20 Jt</option>
+                      <option value=">20 Jt"> >20 Jt</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Username</label>
+                    <input formControlName="username" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Password</label>
+                    <input formControlName="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Confirm Password</label>
+                    <input formControlName="cpassword" type="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cpassword.errors }">
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

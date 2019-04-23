@@ -1,0 +1,70 @@
+<div class="row account-list">
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body">
+          <div class="img-profile">
+            <img src="assets/images/lufy.jpg" alt="User Profile">
+          </div>
+          <div class="detail-profile">
+            <hr>
+            <h5>{{wallet.fullName}}</h5>
+            <p class="italic">$ {{wallet.cashTag}}</p>
+            <hr>
+            <p>{{wallet.placeOb}}, {{wallet.birthDate}}</p>
+            <p>{{wallet.email}}</p>
+            <p>{{wallet.phoneNumber}}</p>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-sm-9">
+      <div class="card">
+        <div class="card-body">
+          <h5>Wallet Profile &nbsp;
+          </h5>
+          <hr>
+  
+          <table class="table">
+            <tbody>
+              <tr>
+                <th scope="row" width="150px">Wallet Name</th>
+                <td>{{wallet.walletName}}</td>
+              </tr>
+              <tr>
+                <th scope="row" width="150px">Cash Tag</th>
+                <td>$ {{wallet.cashTag}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Type</th>
+                <td>{{wallet.type}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Active Ballance</th>
+                <td>{{wallet.activeBallance | currency:'Rp. '}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Accounts</th>
+                <td>2 &nbsp;
+                  <a href="#" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-plus-square"></i>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Open Date</th>
+                <td>{{wallet.createAt | date: 'longDate'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <!-- edit -->
+        <!-- <app-editcustprofile (emiterEdit)="editPage($event)" *ngIf="isEdit"></app-editcustprofile> -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- <app-modaladdaccount></app-modaladdaccount> -->
+  
