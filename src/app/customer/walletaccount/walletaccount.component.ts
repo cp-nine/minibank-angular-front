@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { WalletService } from '../services/wallet.service';
 import { Wallet } from 'src/app/model/wallet';
 import { WalletAccount } from 'src/app/model/wallet-account';
+import { CustomerService } from '../services/customer.service';
 
 @Component({
   selector: 'app-walletaccount',
@@ -18,6 +19,7 @@ export class WalletaccountComponent implements OnInit {
   wallets: WalletAccount[];
   wallet: Wallet = new Wallet();
   walletAccount: WalletAccount = new WalletAccount();
+  walletBallance: number = 0;
 
   isSuccess: boolean = false;
 
@@ -25,13 +27,14 @@ export class WalletaccountComponent implements OnInit {
   emmiterWallet = new EventEmitter();
 
   constructor(
-    private service: WalletService
+    private service: WalletService,
+    private service2: CustomerService
   ) { }
 
   ngOnInit() {
 
     this.refresh();
-
+    this.getBallance();
     this.getWallets();
 
   }
@@ -55,6 +58,11 @@ export class WalletaccountComponent implements OnInit {
     } else {
      this.wallets = resp.data;
     }
+  }
+
+  async getBallance(){
+    let resp = await this.service2.getProfile().toPromise();
+    this.walletBallance = this.walletBallance + resp.data.accounts[0].ballance;
   }
 
   unreg(w: WalletAccount){
@@ -93,6 +101,10 @@ export class WalletaccountComponent implements OnInit {
       this.isSuccess = false;
       this.message = message;
     }
+  }
+
+  back(){
+    this.profileWallet = false;
   }
 
 }

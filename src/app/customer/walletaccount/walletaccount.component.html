@@ -37,7 +37,8 @@
                   <td><a href="javascript:void(0)" (click)="profile(w)">{{w.walletName}}</a></td>
                   <td>{{w.accountNumber}}</td>
                   <td>{{w.createAt}}</td>
-                  <td>{{w.ballance | currency: 'Rp. '}}</td>
+                  <td *ngIf="w.type!=='E-Banking'">{{w.ballance | currency: 'Rp. '}}</td>
+                  <td *ngIf="w.type==='E-Banking'">{{walletBallance | currency: 'Rp. '}}</td>
                   <td>
                     <a href="#" (click)="unreg(w)" class="btn btn-primary btn-sm" data-toggle="modal"
                       data-target="#unreg-modal">
@@ -56,4 +57,4 @@
 
 <app-modalcreatewallet (modalEmitter)="updateData($event)" *ngIf="!profileWallet"></app-modalcreatewallet>
 
-<app-wallet-profile *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>
+<app-wallet-profile (emmiter)="back($event)" *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>

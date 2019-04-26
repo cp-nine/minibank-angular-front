@@ -18,7 +18,7 @@
           <p style="margin-bottom:0;" *ngIf="message === ''">Minimum ballance {{200000 |currency: 'Rp. '}}</p>
         </div>
         <div class="form-group">
-          <input type="text" formControlName="ballance" 
+          <input type="number" formControlName="ballance" 
           class="form-control" id="account" placeholder="Nominal"
           [ngClass]="{ 'is-invalid': submitted && f.ballance.errors }">
         </div>

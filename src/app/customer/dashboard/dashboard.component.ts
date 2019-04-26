@@ -14,10 +14,10 @@ export class DashboardComponent implements OnInit {
   accounts: Account[] = [];
   message: string;
 
-  totalAccount: number;
-  totalTrxCust: number;
+  totalAccount: number = 0;
+  totalTrxCust: number = 0;
   totalBallance: number = 0;
-  totalWallet: number;
+  totalWallet: number = 0;
 
   tTopup: number = 0;
   tCash: number = 0;

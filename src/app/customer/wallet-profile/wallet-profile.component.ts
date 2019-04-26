@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Wallet } from 'src/app/model/wallet';
 import { WalletService } from '../services/wallet.service';
 import { WalletAccount } from 'src/app/model/wallet-account';
@@ -17,6 +17,9 @@ export class WalletProfileComponent implements OnInit {
 
   @Input()
   walletAccount: WalletAccount = new WalletAccount();
+
+  @Output()
+  emmiter = new EventEmitter();
 
   wallet: Wallet = new Wallet();
 
@@ -40,8 +43,10 @@ export class WalletProfileComponent implements OnInit {
         this.wallet = resp.data;
         this.profileWallet = true;
       }
+  }
 
-    
+  back(){
+    this.emmiter.emit();
   }
 
 }

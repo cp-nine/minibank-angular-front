@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       fname: ['', [Validators.required, CustomValidator.stringValidator]],
       lname: ['', [Validators.required, CustomValidator.stringValidator]],
-      placeOb: ['', Validators.required],
+      placeOb: ['', [Validators.required, CustomValidator.stringValidator]],
       brithDate: ['', Validators.required],
       gender: ['', Validators.required],
       address: ['', Validators.required],
@@ -69,8 +69,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['/login']);
-    // this.registerProcess();
+    this.registerProcess();
   }
 
   registerProcess(){
