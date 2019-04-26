@@ -10,7 +10,7 @@ import { WalletAccount } from 'src/app/model/wallet-account';
 })
 export class WalletaccountComponent implements OnInit {
 
-  message: string;
+  message: string = '';
 
   totalBallance: number = 0;
   profileWallet: boolean = false;
@@ -18,6 +18,8 @@ export class WalletaccountComponent implements OnInit {
   wallets: WalletAccount[];
   wallet: Wallet = new Wallet();
   walletAccount: WalletAccount = new WalletAccount();
+
+  isSuccess: boolean = false;
 
   @Output()
   emmiterWallet = new EventEmitter();
@@ -28,22 +30,31 @@ export class WalletaccountComponent implements OnInit {
 
   ngOnInit() {
 
+    this.refresh();
+
     this.getWallets();
 
   }
 
-  getWallets(){
-    this.service.getWalletList().subscribe(
-      resp => {
-        
-        if (resp.status !== "20") {
-          this.message = resp.message;
-        } else {
-         this.wallets = resp.data;
-        }
-
+  private refresh(){
+    this.service.refresh.subscribe(
+      () => {
+        setTimeout(() => {
+          this.getWallets();
+        }, 1000);
       }
     );
+    this.getWallets();
+  }
+
+  async getWallets(){
+    let resp = await this.service.getWalletList().toPromise();
+
+    if (resp.status !== "20") {
+      this.message = resp.message;
+    } else {
+     this.wallets = resp.data;
+    }
   }
 
   unreg(w: WalletAccount){
@@ -74,8 +85,14 @@ export class WalletaccountComponent implements OnInit {
     this.profileWallet = true;
   }
 
-  updateData(){
-    this.getWallets();
+  updateData(message){
+    if (message){
+      this.isSuccess = true;
+      this.message = message;
+    } else {
+      this.isSuccess = false;
+      this.message = message;
+    }
   }
 
 }

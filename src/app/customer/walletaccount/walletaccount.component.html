@@ -1,47 +1,59 @@
 <div class="row account-list" *ngIf="!profileWallet">
-    <div class="col-sm-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h5>Wallet Accounts &nbsp;
-                            <span>
-                                <a href="#" data-toggle="modal" data-target="#create-wallet">
-                                    <i class="fas fa-plus-square"></i>
-                                </a>
-                            </span>
-                        </h5>
-                        <hr>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Wallet Name</th>
-                                    <th scope="col">Primary Account</th>
-                                    <th scope="col">Open Date</th>
-                                    <th scope="col">Ballance</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let w of wallets">
-                                    <td><a href="javascript:void(0)" (click)="profile(w)">{{w.walletName}}</a></td>
-                                    <td>{{w.accountNumber}}</td>
-                                    <td>{{w.createAt}}</td>
-                                    <td>{{w.ballance | currency: 'Rp. '}}</td>
-                                    <td>
-                                        <a href="#" (click)="unreg(w)" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#unreg-modal">
-                                            <i class="fas fa-unlink"></i> Unreg
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+  <div class="col-md-12" *ngIf="message !== ''">
+    <div class="alert alert-dismissible fade show" [ngClass]="isSuccess ? 'alert-success': 'alert-danger '"
+      role="alert">
+      <p style="margin-bottom:0;">{{message}}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
   </div>
-  
-  <app-modalcreatewallet (modalEmitter)="updateData($event)" *ngIf="!profileWallet"></app-modalcreatewallet>
 
-  <app-wallet-profile *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <h5>Wallet Accounts &nbsp;
+              <span>
+                <a href="#" data-toggle="modal" data-target="#create-wallet">
+                  <i class="fas fa-plus-square"></i>
+                </a>
+              </span>
+            </h5>
+            <hr>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Wallet Name</th>
+                  <th scope="col">Primary Account</th>
+                  <th scope="col">Open Date</th>
+                  <th scope="col">Ballance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let w of wallets">
+                  <td><a href="javascript:void(0)" (click)="profile(w)">{{w.walletName}}</a></td>
+                  <td>{{w.accountNumber}}</td>
+                  <td>{{w.createAt}}</td>
+                  <td>{{w.ballance | currency: 'Rp. '}}</td>
+                  <td>
+                    <a href="#" (click)="unreg(w)" class="btn btn-primary btn-sm" data-toggle="modal"
+                      data-target="#unreg-modal">
+                      <i class="fas fa-unlink"></i> Unreg
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modalcreatewallet (modalEmitter)="updateData($event)" *ngIf="!profileWallet"></app-modalcreatewallet>
+
+<app-wallet-profile *ngIf="profileWallet" [walletAccount]="walletAccount"></app-wallet-profile>

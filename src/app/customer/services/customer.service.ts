@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CommonResponse } from 'src/app/response/common-response';
 import { Customer } from 'src/app/model/customer-model';
 import { Account } from 'src/app/model/account-model';
 import { TrxEntity } from 'src/app/model/trx-entity';
+import {tap} from 'rxjs/operators';
+import { NewPassword } from 'src/app/model/new-password';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,14 @@ export class CustomerService {
 
   CIF = localStorage.getItem("user");
   baseUrl = "http://localhost:8080/api-v1";
+
+  private _refresh = new Subject<void>();
+
+  
+  get refresh() {
+    return this._refresh;
+  }
+  
 
   // get customer profile
   getProfile(): Observable<CommonResponse<Customer>>{
@@ -28,7 +38,8 @@ export class CustomerService {
 
   // post new account
   createAccount(account: Account): Observable<CommonResponse<Account>>{
-    return this.http.post<CommonResponse<Account>>(`${this.baseUrl}/account`, account);
+    return this.http.post<CommonResponse<Account>>(`${this.baseUrl}/account`, account)
+                    .pipe(tap(()=>{ this._refresh.next(); }));
   }
 
   // post new account
@@ -58,6 +69,10 @@ export class CustomerService {
 
       }
     );
+  }
+
+  updatePassword(data: NewPassword): Observable<CommonResponse<String>>{
+    return this.http.put<CommonResponse<String>>(`${this.baseUrl}/customer/reset`, data);
   }
 
 }

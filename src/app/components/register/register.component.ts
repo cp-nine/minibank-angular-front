@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from 'src/app/model/customer-model';
 import { CustomerService } from 'src/app/customer/services/customer.service';
+import { Router } from '@angular/router';
+import { CustomValidator } from 'src/app/customer/forms/cutom-validator';
+import { mustMatch } from 'src/app/customer/forms/must-match';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +23,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service1: CustomerService
+    private service1: CustomerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,19 +34,22 @@ export class RegisterComponent implements OnInit {
 
   registerGroup(){
     this.registerForm = this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
+      fname: ['', [Validators.required, CustomValidator.stringValidator]],
+      lname: ['', [Validators.required, CustomValidator.stringValidator]],
       placeOb: ['', Validators.required],
       brithDate: ['', Validators.required],
       gender: ['', Validators.required],
       address: ['', Validators.required],
       job: ['', Validators.required],
       rangeSalary: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      email: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, CustomValidator.numberValidator]],
+      email: ['', [Validators.required, Validators.email]],
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       cpassword: ['', Validators.required]
+    },
+    {
+      validator: mustMatch("password","cpassword")
     });
   }
 
@@ -62,7 +69,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.registerProcess();
+    this.router.navigate(['/login']);
+    // this.registerProcess();
   }
 
   registerProcess(){
@@ -73,7 +81,8 @@ export class RegisterComponent implements OnInit {
         } else {
           this.message = resp.message;
           this.isSuccess = true;
-          this.registerForm.reset();
+          alert("Success");
+          this.router.navigate(['/login']);
         }
       }
     );

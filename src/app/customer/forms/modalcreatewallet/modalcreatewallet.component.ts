@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Customer } from 'src/app/model/customer-model';
 import { CustomerService } from '../../services/customer.service';
 import { WalletService } from '../../services/wallet.service';
+import { CustomValidator } from '../cutom-validator';
+import { mustMatch } from '../must-match';
 
 @Component({
   selector: 'app-modalcreatewallet',
@@ -41,11 +43,14 @@ export class ModalcreatewalletComponent implements OnInit {
     this.walletForm = this.fb.group({
       walletName: ['', Validators.required],
       cashTag: ['', Validators.required],
-      accountNumber: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      accountNumber: ['', [Validators.required, CustomValidator.numberValidator]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       cpassword: ['', Validators.required],
       type: ['', Validators.required]
+    },
+    {
+      validator: mustMatch("password", "cpassword")
     });
   }
 
@@ -75,12 +80,12 @@ export class ModalcreatewalletComponent implements OnInit {
       resp => {
         if (resp.status !== "20") {
           this.message = resp.message;
+          this.isSuccess = true;
+          this.modalEmitter.emit(this.message = resp.message);
         } else {
           this.message = resp.message;
           this.isSuccess = true;
-
-          this.isSuccess = !this.isSuccess;
-          this.modalEmitter.emit(this.isSuccess);
+          this.modalEmitter.emit(this.message = resp.message);
         }
       }
     );

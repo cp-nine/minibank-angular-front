@@ -4,6 +4,7 @@ import { Account } from 'src/app/model/account-model';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from 'src/app/model/customer-model';
 import { Router } from '@angular/router';
+import { CustomValidator } from '../cutom-validator';
 
 @Component({
   selector: 'app-modalcreateaccount',
@@ -37,7 +38,7 @@ export class ModalcreateaccountComponent implements OnInit {
     this.getProfile();
 
     this.acnForm = this.fb.group({
-      ballance: ['', [Validators.required, Validators.min(200000)]]
+      ballance: ['', [Validators.required, Validators.min(200000), CustomValidator.numberValidator]]
     });
   }
 
@@ -48,7 +49,9 @@ export class ModalcreateaccountComponent implements OnInit {
   addAccount(){
     this.submitted = true;
 
-    this.account.accountName = this.customer.fname+ " " +this.customer.lname;
+    let primaryName = this.customer.fname+ " " +this.customer.lname;
+
+    this.account.accountName = primaryName;
     this.account.ballance = this.acnForm.controls.ballance.value;
     this.account.customerNumber = localStorage.getItem("user");
 
@@ -58,12 +61,9 @@ export class ModalcreateaccountComponent implements OnInit {
       return;
 
     }
-
-    // setTimeout(()=>{
-      this.createAccount(this.account);
-    // }, 3000);
     
-    
+    this.createAccount(this.account);
+  
   }
 
   getProfile(){
@@ -82,14 +82,11 @@ export class ModalcreateaccountComponent implements OnInit {
     this.servisce1.createAccount(account).subscribe(
       resp => {
         if (resp.status !== "20") {
-          this.message = resp.message;
+          this.isCreated = !this.isCreated;
+          this.emmiterModal.emit(resp.message);
         } else {
-            this.message = resp.message;
-
             this.isCreated = !this.isCreated;
-            this.emmiterModal.emit(this.isCreated);
-
-            this.router.navigate(['/customer/account-list']);
+            this.emmiterModal.emit(resp.message);
 
         }
       }

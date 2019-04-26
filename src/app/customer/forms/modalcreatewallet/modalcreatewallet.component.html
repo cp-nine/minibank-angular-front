@@ -10,11 +10,7 @@
         </button>
       </div>
 
-      <div class="alert text-center" *ngIf="message !== ''" [ngClass]="isSuccess ? 'alert-success': 'alert-danger '">
-        <p style="margin-bottom:0;">{{message}}</p>
-      </div>
-
-      <form [formGroup]="walletForm" (ngSubmit)="newWallet()">
+      <form [formGroup]="walletForm">
 
         <div class="modal-body">
           <div class="form-group">
@@ -26,7 +22,7 @@
               [ngClass]="{ 'is-invalid': submitted && f.cashTag.errors }">
           </div>
           <div class="form-group">
-            <input formControlName="accountNumber" type="text" class="form-control" placeholder="Account Number"
+            <input formControlName="accountNumber" type="number" class="form-control" placeholder="Account Number"
               [ngClass]="{ 'is-invalid': submitted && f.accountNumber.errors }">
           </div>
           <div class="form-group">
@@ -43,7 +39,7 @@
               [ngClass]="{ 'is-invalid': submitted && f.cpassword.errors }">
           </div>
           <div class="form-group">
-            <input formControlName="type" value="E-Banking" type="radio" checked>&nbsp;
+            <input formControlName="type" value="E-Banking" type="radio">&nbsp;
             <label for="">E-Banking</label>&nbsp;&nbsp;
             <input formControlName="type" value="E-Payment" type="radio">&nbsp;
             <label for="">E-Payment</label>&nbsp;&nbsp;
@@ -53,7 +49,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save</button>
+          <button (click)="newWallet()" [disabled]="walletForm.invalid" class="btn btn-primary" data-dismiss="modal">Save</button>
         </div>
 
       </form>

@@ -19,7 +19,12 @@ export class TransactionreportComponent implements OnInit {
 
   ngOnInit() {
     this.getTrxCustomer();
-    $('#tb-transactions').DataTable();
+    
+    setTimeout(() => {
+      $(function () {
+        $('#tb-transaction').DataTable();
+      });
+    }, 2000);
   }
 
 

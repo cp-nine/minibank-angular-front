@@ -6,7 +6,7 @@
 </div>
 
 <!-- if customer is login -->
-<div *ngIf="isLogin">
+<div *ngIf="isLogin && currentUrl !== ''">
   <app-navbar></app-navbar>
   <section class="body">
     <app-sidebar></app-sidebar>

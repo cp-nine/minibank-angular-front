@@ -57,7 +57,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-8">
-                  <h5>Accounts</h5>
+                  <h5>Accounts | <span class="badge badge-info"><a routerLink="/customer/account-list" style="color:#fff;">More</a></span></h5>
                   <hr>
                   <table class="table table-striped">
                     <thead>
@@ -68,7 +68,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let ac of accounts">
+                      <tr *ngFor="let ac of accounts | slice:0:5">
                         <td>{{ac.accountName}}</td>
                         <td>{{ac.accountNumber}}</td>
                         <td>{{ac.ballance | currency:'Rp.'}}</td>

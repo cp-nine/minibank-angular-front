@@ -12,9 +12,10 @@ import { ModalcreateaccountComponent } from './forms/modalcreateaccount/modalcre
 import { ModalcreatewalletComponent } from './forms/modalcreatewallet/modalcreatewallet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WalletProfileComponent } from './wallet-profile/wallet-profile.component';
+import { UpdatePasswordComponent } from './forms/update-password/update-password.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ProfileComponent, EditcustprofileComponent, AccountlistComponent, TransactionreportComponent, WalletaccountComponent, ModalcreateaccountComponent, ModalcreatewalletComponent, WalletProfileComponent],
+  declarations: [DashboardComponent, ProfileComponent, EditcustprofileComponent, AccountlistComponent, TransactionreportComponent, WalletaccountComponent, ModalcreateaccountComponent, ModalcreatewalletComponent, WalletProfileComponent, UpdatePasswordComponent],
   imports: [
     CommonModule,
     CustomerRoutingModule,

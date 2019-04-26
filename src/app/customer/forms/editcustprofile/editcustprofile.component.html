@@ -1,58 +1,62 @@
             <!-- Edit Page -->
             <div class="card-body">
-                <h5>Edit Profile &nbsp;
-                </h5>
-                <hr>
-  
+              <h5>Edit Profile &nbsp;
+              </h5>
+              <hr>
+              <form [formGroup]="editForm">
                 <table class="table">
                   <tbody>
                     <tr>
                       <th scope="row" width="150px">First Name</th>
-                      <td><input type="text" name="fname" class="form-control" value="{{eCustomer.fname}}"></td>
+                      <td><input type="text" formControlName="fname" class="form-control" value="{{eCustomer.fname}}">
+                      </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="150px">Last Name</th>
-                        <td><input type="text" name="lname" class="form-control" value="{{eCustomer.lname}}"></td>
-                      </tr>
+                      <th scope="row" width="150px">Last Name</th>
+                      <td><input type="text" formControlName="lname" class="form-control">
+                      </td>
+                    </tr>
                     <tr>
                       <th scope="row">Gender</th>
-                      <td><input type="text" name="gender" class="form-control"></td>
+                      <td><input type="text" formControlName="gender" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Place Of Birth</th>
-                      <td><input type="text" name="placeOb" class="form-control"></td>
+                      <td><input type="text" formControlName="placeOb" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Birth Of Date</th>
-                      <td><input type="text" name="brithDate" class="form-control"></td>
+                      <td><input type="text" formControlName="brithDate" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Email</th>
-                      <td><input type="email" name="email" class="form-control"></td>
+                      <td><input type="email" formControlName="email" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Phone Number</th>
-                      <td><input type="text" name="phone" class="form-control"></td>
+                      <td><input type="text" formControlName="phoneNumber" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Address</th>
-                      <td><input type="text" name="address" class="form-control"></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">Province</th>
-                      <td><input type="text" name="province" class="form-control"></td>
+                      <td><input type="text" formControlName="address" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Job</th>
-                      <td><input type="text" name="job" class="form-control"></td>
+                      <td><input type="text" formControlName="job" class="form-control"></td>
                     </tr>
                     <tr>
                       <th scope="row">Range Salary</th>
-                      <td><input type="text" name="salary" class="form-control"></td>
+                      <td>
+                        <select name="rangeSalary" class="form-control"
+                          [ngClass]="{ 'is-invalid': submitted && f.rangeSalary.errors }">
+                          <option *ngFor="let r of range" value="{{r}}" 
+                          [selected]="eCustomer.rangeSalary===r">{{r}}</option>
+                        </select>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
-                <button class="btn btn-primary">Save</button> &nbsp;
+                <button (click)="onSubmit()" class="btn btn-primary">Save</button> &nbsp;
                 <button (click)="back()" class="btn btn-warning">Back</button>
-              </div>
-  
+              </form>
+            </div>

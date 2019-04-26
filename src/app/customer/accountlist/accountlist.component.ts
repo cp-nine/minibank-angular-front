@@ -10,7 +10,7 @@ import { Account } from 'src/app/model/account-model';
 export class AccountlistComponent implements OnInit {
 
 
-  message: string;
+  message: string = '';
 
   accounts: Account[];
   totalBallance: number = 0;
@@ -20,11 +20,22 @@ export class AccountlistComponent implements OnInit {
   constructor(private service: CustomerService) { }
 
   ngOnInit() {
+    
+    this.subscribeAccountsList()
 
     this.getAccounts();
-    
-    console.log(this.successCreated);
 
+  }
+
+  private subscribeAccountsList(){
+    // subscribe all changes of accounts
+    this.service.refresh.subscribe(
+      () => {
+        setTimeout(() => {
+          this.getAccounts();
+        }, 1500);
+      }
+    );
   }
 
   getAccounts(){
@@ -44,9 +55,9 @@ export class AccountlistComponent implements OnInit {
     );
   }
 
-  isCreated(){
+  isCreated(message){
     this.successCreated = !this.successCreated;
-    this.getAccounts();
+    this.message = message;
   }
 
 }
