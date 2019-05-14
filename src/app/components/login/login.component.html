@@ -11,7 +11,7 @@
               <div class="col-sm-7 bg-white right-block">
 
                 <div class="alert alert-danger text-center" *ngIf="loginFailed">
-                  <p style="margin-bottom:0;">Username or Password not valid!!!</p>
+                  <p style="margin-bottom:0;">{{message}}</p>
                 </div>
 
                 <form [formGroup]="loginForm" (ngSubmit)="loginProcess()">

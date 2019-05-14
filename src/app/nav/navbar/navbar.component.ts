@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -15,7 +16,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    this.router.navigateByUrl("/login");
   }
 
 }

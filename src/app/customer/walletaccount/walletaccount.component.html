@@ -1,8 +1,7 @@
 <div class="row account-list" *ngIf="!profileWallet">
 
   <div class="col-md-12" *ngIf="message !== ''">
-    <div class="alert alert-dismissible fade show" [ngClass]="isSuccess ? 'alert-success': 'alert-danger '"
-      role="alert">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
       <p style="margin-bottom:0;">{{message}}</p>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

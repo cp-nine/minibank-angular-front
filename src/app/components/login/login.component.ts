@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted: boolean = false;
   loginFailed: boolean = false;
+  message: string = '';
 
   auth: LoginModel;
 
@@ -52,11 +53,12 @@ export class LoginComponent implements OnInit {
     // call login auth service to hit api login
     this.service.login(this.auth).subscribe(
       response => {
-        if(response.status !== "20"){
+        if(response.status.toString() !== "20"){
           this.loginFailed = true;
+          this.message = response.message;
         } else {
           localStorage.setItem("user", `${response.data.customerNumber}`);
-          window.location.href = "/customer/dashboard";
+          this.router.navigateByUrl("/customer/dashboard");
         }
       }
     );

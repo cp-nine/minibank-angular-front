@@ -14,7 +14,7 @@ export class CustomerGuard implements CanActivate  {
     if (!this.authService.isLogin()) {
       return true;
     } else {
-      window.location.href = "/login";
+      this.router.navigateByUrl("/login");
       return false;
     }
   }

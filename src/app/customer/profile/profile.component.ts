@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
   customerProfile(){
     this.service.getProfile().subscribe(
       response => {
-        if (response.status !== "20") {
+        if (response.status.toString() !== "20") {
           this.message = response.message;
         } else {
           this.customer = response.data;

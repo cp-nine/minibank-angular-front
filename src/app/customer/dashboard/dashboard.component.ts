@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
  
     this.service.getTrx().subscribe(
       resp => {
-        if (resp.status!=="20") {
+        if (resp.status !=="20") {
           this.message = resp.message;
         } else {
           this.totalTrxCust = resp.data.length;

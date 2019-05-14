@@ -12,7 +12,7 @@ export class AuthserviceService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl = "http://localhost:8080/api-v1/customer"; 
+  baseUrl = "http://localhost:80/api/api-v1/customer"; 
 
   // login
   login(data: LoginModel): Observable<CommonResponse<LoginOk>>{

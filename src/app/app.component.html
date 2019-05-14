@@ -1,5 +1,5 @@
 <!-- if user access home page -->
-<div *ngIf="currentUrl === '' || currentUrl === 'register'">
+<div *ngIf="!isLogin && currentUrl === '' || currentUrl === 'register'">
   <app-publicnavbar></app-publicnavbar>
 
   <router-outlet></router-outlet>
@@ -25,6 +25,6 @@
 </div>
 
 <!-- if user acces login -->
-<div *ngIf="currentUrl === 'login'">
+<div *ngIf="!isLogin">
   <router-outlet></router-outlet>
 </div>

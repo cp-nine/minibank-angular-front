@@ -42,7 +42,8 @@
               </tr>
               <tr>
                 <th scope="row">Active Ballance</th>
-                <td>{{wallet.activeBallance | currency:'Rp. '}}</td>
+                <td *ngIf="wallet.type!=='E-Banking'">{{wallet.activeBallance | currency:'Rp. '}}</td>
+                <td *ngIf="wallet.type==='E-Banking'">{{walletBallance | currency:'Rp. '}}</td>
               </tr>
               <tr>
                 <th scope="row">Open Date</th>
